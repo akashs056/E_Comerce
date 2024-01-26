@@ -1,4 +1,4 @@
-package com.example.ecomerce
+package com.example.ecomerce.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import com.example.ecomerce.Fragments.Cart
 import com.example.ecomerce.Fragments.Home
 import com.example.ecomerce.Fragments.MyOrders
 import com.example.ecomerce.Fragments.Profile
+import com.example.ecomerce.R
 import com.example.ecomerce.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.Objects
