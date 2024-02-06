@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
 }
 
 android {
@@ -62,5 +63,10 @@ dependencies {
     implementation ("com.google.android.material:material:1.11.0")
     //Image SLide SHow
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
-
+    //room db
+    implementation ("androidx.room:room-runtime:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
+    //courotines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0-RC2")
 }
