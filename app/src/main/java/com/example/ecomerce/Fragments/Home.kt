@@ -36,10 +36,15 @@ class Home : Fragment() {
     }
 
     private fun getSliderImg() {
-        Firebase.firestore.collection("slider").document("item").get().addOnSuccessListener {
-            Glide.with(requireContext()).load(it.get("img")).into(binding.sliderImg)
+        if (isAdded) { // Check if fragment is attached to activity
+            Firebase.firestore.collection("slider").document("item").get().addOnSuccessListener {
+                if (isAdded) { // Check again if fragment is attached before loading image
+                    Glide.with(requireContext()).load(it.get("img")).into(binding.sliderImg)
+                }
+            }
         }
     }
+
 
     private fun getProducts() {
         var list=ArrayList<AddProductModel>()
@@ -55,16 +60,20 @@ class Home : Fragment() {
     }
 
     private fun getCategories() {
-        var list=ArrayList<CategoryModel>()
-        Firebase.firestore.collection("categories")
-            .get().addOnSuccessListener {
-                list.clear()
-                for (doc in it.documents){
-                    val data =doc.toObject(CategoryModel::class.java)
-                    list.add(data!!)
+        if (isAdded) { // Check if fragment is attached to activity
+            var list = ArrayList<CategoryModel>()
+            Firebase.firestore.collection("categories")
+                .get().addOnSuccessListener {
+                    if (isAdded) { // Check again if fragment is attached before updating UI
+                        list.clear()
+                        for (doc in it.documents) {
+                            val data = doc.toObject(CategoryModel::class.java)
+                            data?.let { it1 -> list.add(it1) }
+                        }
+                        binding.categoryrv.adapter = CategoryAdapter(requireContext(), list)
+                    }
                 }
-                binding.categoryrv.adapter=CategoryAdapter(requireContext(),list)
-            }
+        }
     }
 
 }

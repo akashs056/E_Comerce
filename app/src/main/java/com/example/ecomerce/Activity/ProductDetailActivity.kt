@@ -4,11 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import com.denzcoskun.imageslider.animations.Toss
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.ecomerce.Fragments.Cart
+import com.example.ecomerce.Fragments.Home
+import com.example.ecomerce.R
 import com.example.ecomerce.databinding.ActivityProductDetailBinding
 import com.example.ecomerce.roomDB.AppDatabase
 import com.example.ecomerce.roomDB.ProductModel
@@ -68,7 +71,12 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun openCart() {
-        startActivity(Intent(applicationContext,Cart::class.java))
+        val fragmentManager = MainActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        val cartFragment = Home() // Replace `CartFragment()` with the actual name of your CartFragment class
+        fragmentTransaction.replace(R.id.container, cartFragment) // Replace `R.id.fragment_container` with the ID of the container where you want to show the cart fragment
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
         finish()
     }
 
