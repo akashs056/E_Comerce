@@ -71,12 +71,9 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun openCart() {
-        val fragmentManager = MainActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        val cartFragment = Home() // Replace `CartFragment()` with the actual name of your CartFragment class
-        fragmentTransaction.replace(R.id.container, cartFragment) // Replace `R.id.fragment_container` with the ID of the container where you want to show the cart fragment
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("OPEN_CART", true)
+        startActivity(intent)
         finish()
     }
 
@@ -93,4 +90,8 @@ class ProductDetailActivity : AppCompatActivity() {
             binding.addtoCart.text="Go To Cart"
         }
     }
+    interface CartActionListener {
+        fun openCartFragment()
+    }
+
 }

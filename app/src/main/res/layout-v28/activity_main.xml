@@ -26,6 +26,7 @@
         app:itemTextColor="#ffffff "
         android:background="@color/blue"
         app:itemIconSize="24dp"
+        app:itemActiveIndicatorStyle="@color/blue"
         app:itemIconTint="#ffffff"
         app:menu="@menu/bottom_nav" />
 
